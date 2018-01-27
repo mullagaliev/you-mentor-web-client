@@ -1,0 +1,64 @@
+@import "../../style/helpers/import"
+
+/** ADDITIONAL INFO **/
+
+.AdditionalInfo
+  padding: 5px 20px 35px
+  background: linear-gradient(to top, #4776e6, #8e54e9)
+  &SubscribeBtn
+    margin-left: 10px !important
+    +rm
+      display: block
+      width: 100%
+      margin-top: 10px !important
+      margin-left: 0 !important
+  &Title
+    cursor: pointer
+    color: white
+    font-weight: 500
+    margin-top: 40px !important
+    +rm
+      margin-top: 0 !important
+  &Container
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+    margin: 0 -10px
+  +rt
+    padding: 15px 10px
+  +rm
+    padding: 15px 20px
+    margin: 0
+
+$countAdditionalInfoElem: 2
+.AdditionalInfoElem
+  background-color: white
+  border-radius: 10px
+  padding: 15px 15px 25px
+  min-height: 100px
+  width: calc((100% / #{$countAdditionalInfoElem}) - 20px)
+  margin-bottom: 20px
+  +rt
+    width: calc((100% / 2) - 20px)
+    margin-bottom: 20px
+  +rm
+    width: 100%
+    margin-bottom: 10px
+    &:last-child
+      margin-bottom: 0
+  display: flex
+
+.AdditionalInfoElemIcon
+  display: block
+  min-width: 50px
+  width: 50px
+  //height: 100%
+  //align-self: center
+  padding-right: 10px
+
+.AdditionalInfoElemTitle
+  color: #23334d
+  font-size: 18px
+  //align-self: center
+  h3
+    margin: 0
