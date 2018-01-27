@@ -50,7 +50,7 @@ function callApi(endpoint, method, data = {}) {
 
 /* USERS */
 export const getUsers = (filter = {}, sort = {}) => callApi('/users/', 'GET', filter);
-export const getUserById = (userId = 1) => callApi('/user/' + userId, 'GET');
+export const getUserById = (userId = 1) => callApi('/users/' + userId + '/', 'GET');
 
 export const getCategories = () => callApi('/categories/', 'GET');
 

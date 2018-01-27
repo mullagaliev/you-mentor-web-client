@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import UserProfile from '../../components/UserProfile';
 // import { connect } from 'react-redux';
-// import { getUserById, getAlbumsByUserId } from '../../actions';
+import { getUserById } from '../../services/api';
 
 class ContainerUserProfile extends Component {
+  state = {
+    user: null
+  };
+
   Update(userId) {
-    // this.props.dispatch(getUserById(userId));
-    // this.props.dispatch(getAlbumsByUserId(userId));
+    getUserById(userId).then((user) => {
+      this.setState({ user });
+    });
   }
 
   componentDidMount() {
@@ -25,30 +30,7 @@ class ContainerUserProfile extends Component {
   }
 
   render() {
-    // const { user, albums } = this.props;
-    const user = {
-      "id": 1,
-      "name": "Leanne Graham",
-      "username": "Bret",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "suite": "Apt. 556",
-        "city": "Gwenborough",
-        "zipcode": "92998-3874",
-        "geo": {
-          "lat": "-37.3159",
-          "lng": "81.1496"
-        }
-      },
-      "phone": "1-770-736-8031 x56442",
-      "website": "hildegard.org",
-      "company": {
-        "name": "Romaguera-Crona",
-        "catchPhrase": "Multi-layered client-server neural-net",
-        "bs": "harness real-time e-markets"
-      }
-    };
+    const { user } = this.state;
     return (<UserProfile user={user}/>);
   }
 }

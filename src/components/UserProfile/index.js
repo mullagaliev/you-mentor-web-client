@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DefaultAvatar from '../../static/defaultAvatar.jpg';
+import SkillsList from '../SkillsList';
 
 import GoogleMap from '../common/GoogleMap';
 
@@ -10,12 +11,8 @@ class UserProfile extends Component {
 
   render() {
     const { user } = this.props;
-    if (!user.id)
+    if (!user || !user.id)
       return null;
-    // const geoMarkerLatLng = {
-    //   lat: Number(user.address.geo.lat),
-    //   lng: Number(user.address.geo.lng)
-    // };
     return (<div className={style.UserProfile}>
       <div className={style.PrimaryInfo}>
         <div className={style.PrimaryInfoAvatar}>
@@ -34,12 +31,20 @@ class UserProfile extends Component {
           </span>
         </div>
         <div className={style.PrimaryInfoRating}>
-          {/*<GoogleMap*/}
-              {/*center={geoMarkerLatLng}*/}
-              {/*marker={Object.assign({}, geoMarkerLatLng, { text: user.address.street + ' ' + user.address.suite })}*/}
-              {/*zoom={2}/>*/}
         </div>
       </div>
+      {
+        user.skills && user.skills.map((item, key) => {
+          return <SkillsList key={key}
+                             isActive
+                             isOpen
+                             author={user}
+                             title={item.name}
+                             category={item.category}
+                             items={item.achievements}/>
+
+        })
+      }
     </div>)
   }
 }
