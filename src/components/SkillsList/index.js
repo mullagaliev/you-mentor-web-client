@@ -32,8 +32,7 @@ class SkillsList extends Component {
               <Icon name={isOpen ? 'chevron up' : 'chevron down'}/>
               Достижения ({items.length}) в {title && (isActive ?
                 <b>{title}</b> : title) } в сфере {category.name} </span>
-            <Button className={style.AdditionalInfoSubscribeBtn} color='green'>Записаться к
-              {author.name}</Button>
+            <Button className={style.AdditionalInfoSubscribeBtn} color='green'>Узнать у {author.fio} как?</Button>
           </h2>
           {isOpen &&
           <div className={style.AdditionalInfoContainer}>
