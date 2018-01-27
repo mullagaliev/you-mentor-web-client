@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ContainerUsersList from './containers/UsersList';
+import ContainerUserPage from './containers/UserProfile';
+import Layout from './layouts/DefaultLayout';
+import './index.css';
+import 'semantic-ui-css/semantic.min.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const styles = require('./App.sass');
 
 class App extends Component {
   render() {
-    console.log(styles);
     return (
-      <div className={styles.App}>
-        <header className={styles.AppHeader}>
-          <img src={logo} className={styles.AppLogo} alt="logo" />
-          <h1 className={styles.AppTitle}>Welcome to React</h1>
-        </header>
-        <p className={styles.AppIntro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <div className={styles.App}>
+          <Router basename="/">
+            <Switch>
+              <Route path='/user/:userId' component={({ match }) => {
+                const userId = match.params.userId;
+                return <Layout>
+                  <ContainerUserPage userId={userId}/>
+                </Layout>;
+              }}/>
+              <Route path='/users' component={() => {
+                return <Layout>
+                  <ContainerUsersList/>
+                </Layout>;
+              }}/>
+              <Route path='/' component={() => {
+                return <Layout>
+                  <ContainerUsersList/>
+                </Layout>;
+              }}/>
+            </Switch>
+          </Router>
+        </div>
     );
   }
 }
