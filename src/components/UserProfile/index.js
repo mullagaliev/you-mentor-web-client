@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DefaultAvatar from '../../static/defaultAvatar.jpg';
 import SkillsList from '../SkillsList';
+import MentorsList from '../MentorsList';
+import ActiveTasksList from '../ActiveTasksList';
 
 import GoogleMap from '../common/GoogleMap';
 
@@ -11,6 +13,29 @@ class UserProfile extends Component {
 
   render() {
     const { user } = this.props;
+    const mentors = [
+      {
+        name: 'Бизнес',
+        description: 'Заработок 1-го миллиона'
+      },
+      {
+        name: 'Отношения',
+        description: 'Найти жену до 30 лет'
+      }
+    ];
+    const tasks = [
+      {
+        name: 'Выйти на оборот в 5 млн. в продажах лесного массива',
+        description: ' ',
+        progress: 90
+      },
+      {
+        name: 'Выйти на оборот в 10 млн. в продажах лесного массива',
+        description: ' ',
+        progress: 50
+      }
+    ];
+
     if (!user || !user.id)
       return null;
     return (<div className={style.UserProfile}>
@@ -44,6 +69,17 @@ class UserProfile extends Component {
                              items={item.achievements}/>
 
         })
+      }
+      {
+        mentors && <MentorsList author={user}
+                     title={'Менторы'}
+                     items={mentors}/>
+
+      }
+      {
+        tasks && <ActiveTasksList author={user}
+                                  title={'Активные задания'}
+                                  items={tasks}/>
       }
     </div>)
   }
