@@ -7,11 +7,12 @@ const style = require('./UsersList.sass');
 
 class UsersListMini extends Component {
   render() {
-    const { items } = this.props;
+    const { items, GoToUser } = this.props;
     return <div className={style.UsersList}>
       <div className={style.UsersListContainer}>
         {items && items.map((item, key) => {
           return <div key={item.id}
+                      onClick={()=>GoToUser(item.id)}
                       className={style.UsersListItem}>
             <div className={style.UsersListItemAvatar}>
               <div

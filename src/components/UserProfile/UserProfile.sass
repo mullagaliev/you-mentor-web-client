@@ -60,8 +60,30 @@
   font-weight: 100
 
 .PrimaryInfoRating
+
+  padding: 10px
   width: calc(100% - 150px - 450px)
-  background-color: white
+  //background-color: white
+  color: white
+  &Stars
+    display: flex
+    flex-wrap: nowrap
+    justify-content: flex-start
+    margin-bottom: 10px
+    &:last-child
+      margin-bottom: 0
+    &Value
+      width: 200px
+    &Title
+      font-weight: 100
+      font-size: 19px
+      padding: 0 10px
+      &:last-child
+        width: 100px
+        padding-right: 0
+      &:first-child
+        width: 200px
+        padding-left: 0
   +rt
     width: 50%
   +rm

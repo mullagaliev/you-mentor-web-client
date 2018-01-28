@@ -7,22 +7,38 @@ import { getUsers } from '../../services/api';
 
 class ContainerUsersList extends Component {
   state = {
-    users: null
+    users: null,
+    filter: {
+      category: 0
+    }
   };
-
-  componentDidMount() {
-    // this.props.dispatch(getUsers());
-    getUsers().then((users) => {
+  Update(){
+    const { filter } = this.state;
+    getUsers(filter).then((users) => {
       this.setState({ users });
       console.log(users);
-    })
+    });
+    console.log('Search...');
+  }
+
+  componentDidMount() {
+   this.Update();
+  }
+
+  Search(categoryId) {
+    this.setState({
+      filter: {
+        category: categoryId
+      }
+    }, this.Update);
   }
 
   render() {
     // const { users } = this.props;
     const { users } = this.state;
     return (
-        <SearchUsers items={users} {...this.props}/>
+        <SearchUsers items={users} {...this.props}
+                     onChangeSearch={(categoryId) => this.Search(categoryId)}/>
     );
   }
 }

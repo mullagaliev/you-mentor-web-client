@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Select, Input, Dropdown } from 'semantic-ui-react';
 import { getCategories } from '../../services/api';
+import $ from 'jquery';
 
 const person = [
   { key: 'all', text: 'Без разницы', value: 'all' },
@@ -30,30 +31,38 @@ const renderLabel = label => ({
 class SearchInput extends Component {
   state = {
     category: null,
+    activeCategory: 0
   };
 
-  componentDidMount(){
-    getCategories().then((category)=>{
+  componentDidMount() {
+    getCategories().then((category) => {
       category.push({
         id: 0,
         name: 'Без разницы'
       });
-      this.setState({category : category.map((item)=>{
-        return {
-          key: item.id,
-          text: item.name,
-          value: item.id
-        }
-      })});
+      this.setState({
+        category: category.map((item) => {
+          return {
+            key: item.id,
+            text: item.name,
+            value: item.id
+          }
+        })
+      });
     })
   }
 
   render() {
-    const { category } = this.state;
-    return <Input type='text' placeholder='Ишу...' action fluid>
+    const { category, activeCategory } = this.state;
+    return <Input type='text' placeholder='Ишу...' action fluid {...this.props}>
       <input/>
-      <Select compact options={person} defaultValue='mentors' />
-      <Select compact options={category} defaultValue='0' />
+      <Select compact options={person} defaultValue='mentors'/>
+      <Select compact options={category} defaultValue='0'
+              onChange={(e, { value }) => {
+                this.setState({ activeCategory: value });
+              }}
+              value={activeCategory}
+      />
       <Dropdown
           multiple
           selection
@@ -61,7 +70,8 @@ class SearchInput extends Component {
           placeholder='Чтобы научиться'
           renderLabel={renderLabel}
       />
-      <Button type='submit' color='yellow'>Найти</Button>
+      <Button type='submit' color='yellow'
+              onClick={() => this.props.onChangeSearch(activeCategory)}>Найти</Button>
     </Input>;
   }
 }

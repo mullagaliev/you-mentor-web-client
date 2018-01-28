@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import UserProfile from '../../components/UserProfile';
+import UserPage from '../../components/UserPage';
 // import { connect } from 'react-redux';
 import { getUserById } from '../../services/api';
 
@@ -31,7 +31,7 @@ class ContainerUserProfile extends Component {
 
   render() {
     const { user } = this.state;
-    return (<UserProfile user={user}/>);
+    return (<UserPage user={user}/>);
   }
 }
 

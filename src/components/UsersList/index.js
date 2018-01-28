@@ -16,14 +16,14 @@ class UsersList extends Component {
   render() {
     const { items, title } = this.props;
     return (<div>
-      <h3>Рекомендации</h3>
-      <UsersListMini items={items}/>
       <h3>Результат поиска ({items && items.length})</h3>
       {
         items && items.map((item) => {
           return <UserListItem user={item} key={item.id}/>
         })
       }
+      <h3>Рекомендации</h3>
+      <UsersListMini items={items} GoToUser={this.GoToUser}/>
     </div>);
   }
 }

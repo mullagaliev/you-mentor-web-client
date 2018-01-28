@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MarkerIcon from '../common/icons/Marker';
-import PhoneIcon from '../common/icons/Phone';
-import ChatIcon from '../common/icons/Chat';
-import WebIcon from '../common/icons/Web';
-import PhoneNumber from '../common/PhoneLink';
+import AchievementIcon from '../common/icons/Achievement';
 import { Button, Icon } from 'semantic-ui-react';
 
 const style = require('./SkillsList.sass');
@@ -40,7 +36,7 @@ class SkillsList extends Component {
               items && items.map((item, key) => {
                 return (
                     <div key={item.id} className={style.AdditionalInfoElem}>
-                      <MarkerIcon className={style.AdditionalInfoElemIcon}
+                      <AchievementIcon className={style.AdditionalInfoElemIcon}
                                   width={'40px'}
                                   height={'40px'}/>
                       <span className={style.AdditionalInfoElemTitle}>

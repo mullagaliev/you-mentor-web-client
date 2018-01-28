@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DefaultAvatar from '../../static/defaultAvatar.jpg';
 import SkillsList from '../SkillsList';
-import MentorsList from '../MentorsList';
-import ActiveTasksList from '../ActiveTasksList';
-
-import GoogleMap from '../common/GoogleMap';
+import { Rating } from 'semantic-ui-react';
 
 const style = require('./UserProfile.sass');
 
@@ -13,31 +10,10 @@ class UserProfile extends Component {
 
   render() {
     const { user } = this.props;
-    const mentors = [
-      {
-        name: 'Бизнес',
-        description: 'Заработок 1-го миллиона'
-      },
-      {
-        name: 'Отношения',
-        description: 'Найти жену до 30 лет'
-      }
-    ];
-    const tasks = [
-      {
-        name: 'Выйти на оборот в 5 млн. в продажах лесного массива',
-        description: ' ',
-        progress: 90
-      },
-      {
-        name: 'Выйти на оборот в 10 млн. в продажах лесного массива',
-        description: ' ',
-        progress: 50
-      }
-    ];
-
     if (!user || !user.id)
       return null;
+    const rating = (user.id % 3) + 3;
+    const hearts = ((user.id % 3) + 2) % 6;
     return (<div className={style.UserProfile}>
       <div className={style.PrimaryInfo}>
         <div className={style.PrimaryInfoAvatar}>
@@ -56,6 +32,25 @@ class UserProfile extends Component {
           </span>
         </div>
         <div className={style.PrimaryInfoRating}>
+          <div className={style.PrimaryInfoRatingStars}>
+            <div className={style.PrimaryInfoRatingStarsTitle}>Место в рейтинге</div>
+            <div className={style.PrimaryInfoRatingStarsValue}/>
+            <div className={style.PrimaryInfoRatingStarsTitle}>{5 - rating + 1}/4</div>
+          </div>
+          <div className={style.PrimaryInfoRatingStars}>
+            <div className={style.PrimaryInfoRatingStarsTitle}>Средняя оценка</div>
+            <Rating className={style.PrimaryInfoRatingStarsValue} icon='star' defaultRating={rating}
+                    maxRating={5} size='huge'>
+            </Rating>
+            <div className={style.PrimaryInfoRatingStarsTitle}>{rating}/5</div>
+          </div>
+          <div className={style.PrimaryInfoRatingStars}>
+            <div className={style.PrimaryInfoRatingStarsTitle}>Отзывчивость</div>
+            <Rating className={style.PrimaryInfoRatingStarsValue} icon='heart'
+                    defaultRating={hearts} maxRating={5} size='huge'>
+            </Rating>
+            <div className={style.PrimaryInfoRatingStarsTitle}>{ hearts }/5</div>
+          </div>
         </div>
       </div>
       {
@@ -69,17 +64,6 @@ class UserProfile extends Component {
                              items={item.achievements}/>
 
         })
-      }
-      {
-        mentors && <MentorsList author={user}
-                     title={'Менторы'}
-                     items={mentors}/>
-
-      }
-      {
-        tasks && <ActiveTasksList author={user}
-                                  title={'Активные задания'}
-                                  items={tasks}/>
       }
     </div>)
   }
