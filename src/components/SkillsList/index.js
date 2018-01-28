@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AchievementIcon from '../common/icons/Achievement';
 import { Button, Icon } from 'semantic-ui-react';
-
+import MessageForm from '../MessageForm';
 const style = require('./SkillsList.sass');
 
 class SkillsList extends Component {
@@ -28,7 +28,9 @@ class SkillsList extends Component {
               <Icon name={isOpen ? 'chevron up' : 'chevron down'}/>
               Достижения ({items.length}) в {title && (isActive ?
                 <b>{title}</b> : title) } в сфере {category.name} </span>
-            <Button className={style.AdditionalInfoSubscribeBtn} color='green'>Узнать у {author.fio} как?</Button>
+            <MessageForm btn={
+              <Button className={style.AdditionalInfoSubscribeBtn} color='green'>Узнать у {author.fio} как?</Button>
+            }/>
           </h2>
           {isOpen &&
           <div className={style.AdditionalInfoContainer}>

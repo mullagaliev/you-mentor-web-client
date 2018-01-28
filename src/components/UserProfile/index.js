@@ -7,6 +7,9 @@ import { Rating } from 'semantic-ui-react';
 const style = require('./UserProfile.sass');
 
 class UserProfile extends Component {
+  GoToUser(userId) {
+    window.location.pathname = '/user/' + userId;
+  }
 
   render() {
     const { user } = this.props;
@@ -15,7 +18,7 @@ class UserProfile extends Component {
     const rating = (user.id % 3) + 3;
     const hearts = ((user.id % 3) + 2) % 6;
     return (<div className={style.UserProfile}>
-      <div className={style.PrimaryInfo}>
+      <div className={style.PrimaryInfo} onClick={()=>this.GoToUser(user.id)}>
         <div className={style.PrimaryInfoAvatar}>
           <img src={user.image ? user.image : DefaultAvatar} alt=""/>
         </div>

@@ -17,7 +17,7 @@ const category = [
 ];
 
 const options = [
-  { key: 1, text: 'Вести бизнес', value: 1 },
+  { key: 1, text: 'Инвестиции', value: 1 },
   { key: 2, text: 'Управлять временем', value: 2 },
   { key: 3, text: 'Зарабатывать деньги', value: 3 },
 ];
