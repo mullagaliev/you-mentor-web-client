@@ -1,4 +1,10 @@
-# react-app-sass-modules-boilerplate
-Boilerplate is front-end template that helps you starting build react web applications.
+# Веб клиент для решения в области образования "Ты.Наставник" в рамках хакатона hackathon2025 (MSK)
 
+## Run
+1. `npm install`
+2. `npm start`
 
+## Технологии 
+
+- React
+...
